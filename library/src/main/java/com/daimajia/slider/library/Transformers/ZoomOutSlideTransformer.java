@@ -2,7 +2,11 @@ package com.daimajia.slider.library.Transformers;
 
 import android.view.View;
 
-import com.nineoldandroids.view.ViewHelper;
+import static android.support.v4.view.ViewCompat.setAlpha;
+import static android.support.v4.view.ViewCompat.setPivotY;
+import static android.support.v4.view.ViewCompat.setScaleX;
+import static android.support.v4.view.ViewCompat.setScaleY;
+import static android.support.v4.view.ViewCompat.setTranslationX;
 
 public class ZoomOutSlideTransformer extends BaseTransformer {
 
@@ -19,21 +23,21 @@ public class ZoomOutSlideTransformer extends BaseTransformer {
 			final float horzMargin = view.getWidth() * (1 - scaleFactor) / 2;
 
             // Center vertically
-            ViewHelper.setPivotY(view,0.5f * height);
+            setPivotY(view,0.5f * height);
 
 
 			if (position < 0) {
-                ViewHelper.setTranslationX(view,horzMargin - vertMargin / 2);
+                setTranslationX(view,horzMargin - vertMargin / 2);
 			} else {
-                ViewHelper.setTranslationX(view,-horzMargin + vertMargin / 2);
+                setTranslationX(view,-horzMargin + vertMargin / 2);
 			}
 
 			// Scale the page down (between MIN_SCALE and 1)
-			ViewHelper.setScaleX(view,scaleFactor);
-            ViewHelper.setScaleY(view,scaleFactor);
+			setScaleX(view,scaleFactor);
+            setScaleY(view,scaleFactor);
 
 			// Fade the page relative to its size.
-            ViewHelper.setAlpha(view,MIN_ALPHA + (scaleFactor - MIN_SCALE) / (1 - MIN_SCALE) * (1 - MIN_ALPHA));
+            setAlpha(view,MIN_ALPHA + (scaleFactor - MIN_SCALE) / (1 - MIN_SCALE) * (1 - MIN_ALPHA));
 		}
 	}
 

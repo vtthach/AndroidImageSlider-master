@@ -4,7 +4,11 @@ import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.view.View;
 
-import com.nineoldandroids.view.ViewHelper;
+import static android.support.v4.view.ViewCompat.setPivotX;
+import static android.support.v4.view.ViewCompat.setPivotY;
+import static android.support.v4.view.ViewCompat.setRotationY;
+import static android.support.v4.view.ViewCompat.setTranslationX;
+
 
 public class TabletTransformer extends BaseTransformer {
 
@@ -16,10 +20,10 @@ public class TabletTransformer extends BaseTransformer {
 	protected void onTransform(View view, float position) {
 		final float rotation = (position < 0 ? 30f : -30f) * Math.abs(position);
 
-		ViewHelper.setTranslationX(view,getOffsetXForRotation(rotation, view.getWidth(), view.getHeight()));
-        ViewHelper.setPivotX(view,view.getWidth() * 0.5f);
-        ViewHelper.setPivotY(view,0);
-        ViewHelper.setRotationY(view,rotation);
+		setTranslationX(view,getOffsetXForRotation(rotation, view.getWidth(), view.getHeight()));
+        setPivotX(view,view.getWidth() * 0.5f);
+        setPivotY(view,0);
+        setRotationY(view,rotation);
 	}
 
 	protected static final float getOffsetXForRotation(float degrees, int width, int height) {

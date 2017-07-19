@@ -2,7 +2,10 @@ package com.daimajia.slider.library.Transformers;
 
 import android.view.View;
 
-import com.nineoldandroids.view.ViewHelper;
+import static android.support.v4.view.ViewCompat.setPivotX;
+import static android.support.v4.view.ViewCompat.setPivotY;
+import static android.support.v4.view.ViewCompat.setRotation;
+
 
 public class RotateDownTransformer extends BaseTransformer {
 
@@ -14,9 +17,9 @@ public class RotateDownTransformer extends BaseTransformer {
 		final float height = view.getHeight();
 		final float rotation = ROT_MOD * position * -1.25f;
 
-		ViewHelper.setPivotX(view,width * 0.5f);
-        ViewHelper.setPivotY(view,height);
-        ViewHelper.setRotation(view,rotation);
+		setPivotX(view,width * 0.5f);
+        setPivotY(view,height);
+        setRotation(view,rotation);
 	}
 	
 	@Override

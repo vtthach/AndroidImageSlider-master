@@ -2,7 +2,12 @@ package com.daimajia.slider.library.Transformers;
 
 import android.view.View;
 
-import com.nineoldandroids.view.ViewHelper;
+import static android.support.v4.view.ViewCompat.setPivotX;
+import static android.support.v4.view.ViewCompat.setPivotY;
+import static android.support.v4.view.ViewCompat.setScaleX;
+import static android.support.v4.view.ViewCompat.setScaleY;
+import static android.support.v4.view.ViewCompat.setTranslationX;
+
 
 public class ForegroundToBackgroundTransformer extends BaseTransformer {
 
@@ -12,11 +17,11 @@ public class ForegroundToBackgroundTransformer extends BaseTransformer {
 		final float width = view.getWidth();
 		final float scale = min(position > 0 ? 1f : Math.abs(1f + position), 0.5f);
 
-		ViewHelper.setScaleX(view,scale);
-        ViewHelper.setScaleY(view,scale);
-        ViewHelper.setPivotX(view,width * 0.5f);
-        ViewHelper.setPivotY(view,height * 0.5f);
-        ViewHelper.setTranslationX(view,position > 0 ? width * position : -width * position * 0.25f);
+		setScaleX(view,scale);
+        setScaleY(view,scale);
+        setPivotX(view,width * 0.5f);
+        setPivotY(view,height * 0.5f);
+        setTranslationX(view,position > 0 ? width * position : -width * position * 0.25f);
 	}
 
 	private static final float min(float val, float min) {
